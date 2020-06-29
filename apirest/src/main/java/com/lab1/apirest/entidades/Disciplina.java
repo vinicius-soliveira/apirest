@@ -36,7 +36,7 @@ public class Disciplina {
 	public void setNota(double nota) {
 		this.nota = nota;
 	}
-	
+
 	public static Comparator<Disciplina> NotaComparator = new Comparator<Disciplina>() {
 
 		public int compare(Disciplina disp1, Disciplina disp2) {

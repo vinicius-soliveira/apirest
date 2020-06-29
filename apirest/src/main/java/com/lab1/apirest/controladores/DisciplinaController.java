@@ -31,7 +31,7 @@ public class DisciplinaController {
 	@GetMapping("/v1/api/disciplinas/{id}")
 	public ResponseEntity<Disciplina> getById(@PathVariable(value="id") Integer id) {
 		try{
-		return new ResponseEntity<Disciplina>(disciplinaServices.getById(id), HttpStatus.OK);
+			return new ResponseEntity<Disciplina>(disciplinaServices.getById(id), HttpStatus.OK);
 		}catch (IndexOutOfBoundsException iobe) {
 			return new ResponseEntity<Disciplina>(new Disciplina (), HttpStatus.NOT_FOUND);			
 		}	
@@ -50,7 +50,7 @@ public class DisciplinaController {
 	@DeleteMapping("/v1/api/disciplinas/{id}")
 	public ResponseEntity<Disciplina> delete(@PathVariable(value="id") Integer id) {
 		try{
-		return new ResponseEntity<Disciplina>(disciplinaServices.delete(id), HttpStatus.OK);
+			return new ResponseEntity<Disciplina>(disciplinaServices.delete(id), HttpStatus.OK);
 		}catch (IndexOutOfBoundsException iobe) {
 			return new  ResponseEntity<Disciplina>(HttpStatus.NOT_FOUND);		
 		}
@@ -60,16 +60,16 @@ public class DisciplinaController {
 	@PutMapping("/v1/api/disciplinas/{id}/nome")
 	public ResponseEntity<Disciplina> attDisciplinaNome(@PathVariable(value="id") Integer id, @RequestBody DisciplinaDTO disciplinaDTO) {
 		try {
-		return new ResponseEntity<Disciplina>(disciplinaServices.attDisciplinaNome(id, disciplinaDTO), HttpStatus.OK);
+			return new ResponseEntity<Disciplina>(disciplinaServices.attDisciplina(id, disciplinaDTO), HttpStatus.OK);
 		}catch(IndexOutOfBoundsException iobe) {
 			return new  ResponseEntity<Disciplina>(HttpStatus.NOT_FOUND);
 		}
 	}
 	
-	@PutMapping("/v1/api/disciplinas{id}/nota")
+	@PutMapping("/v1/api/disciplinas/{id}/nota")
 	public ResponseEntity<Disciplina> attDisciplinaNota(@PathVariable(value="id") Integer id, @RequestBody DisciplinaDTO disciplinaDTO) {
 		try {
-		return new ResponseEntity<Disciplina>(disciplinaServices.attDisciplinaNota(id,disciplinaDTO), HttpStatus.OK);
+			return new ResponseEntity<Disciplina>(disciplinaServices.attDisciplina(id, disciplinaDTO), HttpStatus.OK);
 		}catch(IndexOutOfBoundsException iobe) {
 			return new  ResponseEntity<Disciplina>(HttpStatus.NOT_FOUND);
 		}
