@@ -26,7 +26,11 @@ public class DisciplinaServices {
 	
 	public Disciplina getById(Integer id) {
         Disciplina disciplina = new Disciplina();
-        disciplina = listaDisciplinas.get(id-1);
+        for(int index = 0; index < listaDisciplinas.size(); index ++) {
+        	if(id == listaDisciplinas.get(index).getId()) {
+        		disciplina = listaDisciplinas.get(index);
+        	}
+        }
         return disciplina;
     }
       
@@ -45,18 +49,22 @@ public class DisciplinaServices {
     }
 	
 	public Disciplina delete(Integer id) {
-        Disciplina disciplina = new Disciplina();
-        disciplina = listaDisciplinas.remove(id-1);
+		Disciplina disciplina = new Disciplina();
+        for(int index = 0; index < listaDisciplinas.size(); index ++) {
+        	if(id == listaDisciplinas.get(index).getId()) {
+        		disciplina = listaDisciplinas.remove(index);
+        	}
+        }
         return disciplina;
     }
 	
 	public Disciplina attDisciplina(Integer id, DisciplinaDTO disciplina) {
 		Disciplina newDisciplina = getById(id);
 		String newNome = disciplina.getNome();
-		if(newNome != null)
-			newDisciplina.setNome(newNome);
 		Double newNota = disciplina.getNota();
-		if(newNota >0.0 && newNota <=10.0)
+		if(newNome != null && (newNota <= 0.0 || newNota > 10.0) )
+			newDisciplina.setNome(newNome);
+		if(newNota >=0.0 && newNota <=10.0 && newNome == null)
 			newDisciplina.setNota(newNota);
         return newDisciplina;
 	}
