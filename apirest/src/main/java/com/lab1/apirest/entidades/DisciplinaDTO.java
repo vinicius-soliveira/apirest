@@ -1,6 +1,6 @@
 package com.lab1.apirest.entidades;
 
-import java.util.Random;
+
 
 public class DisciplinaDTO {
 	
@@ -36,11 +36,5 @@ public class DisciplinaDTO {
 		this.nota = nota;
 	}
 	
-	public int geraId() {
-		
-		Random random = new Random();
-		int id = random.nextInt(1000);
-		return id;
-		}
 	
 }

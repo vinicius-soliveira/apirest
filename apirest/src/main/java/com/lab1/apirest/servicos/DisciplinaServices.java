@@ -21,6 +21,7 @@ public class DisciplinaServices {
     }
      
 	public List<Disciplina> getDisciplina() {
+		Collections.sort(listaDisciplinas, Disciplina.IdComparator);
         return new ArrayList<Disciplina>(listaDisciplinas);
     }
 	
@@ -29,6 +30,7 @@ public class DisciplinaServices {
         for(int index = 0; index < listaDisciplinas.size(); index ++) {
         	if(id == listaDisciplinas.get(index).getId()) {
         		disciplina = listaDisciplinas.get(index);
+        		break;
         	}
         }
         return disciplina;
@@ -40,10 +42,10 @@ public class DisciplinaServices {
     }
     
 	public Disciplina addDisciplina(DisciplinaDTO disciplina) {
-		int newId = disciplina.geraId();
-		String newNome = disciplina.getNome();
-		double newNota = disciplina.getNota();
-		Disciplina newDisciplina = new Disciplina(newId, newNome, newNota);
+		Disciplina newDisciplina = new Disciplina();	
+		newDisciplina.setId(newDisciplina.geraIdUnico(listaDisciplinas));
+		newDisciplina.setNome(disciplina.getNome());
+		newDisciplina.setNota(disciplina.getNota());
 		listaDisciplinas.add(newDisciplina);
         return newDisciplina;
     }
@@ -53,6 +55,7 @@ public class DisciplinaServices {
         for(int index = 0; index < listaDisciplinas.size(); index ++) {
         	if(id == listaDisciplinas.get(index).getId()) {
         		disciplina = listaDisciplinas.remove(index);
+        		break;
         	}
         }
         return disciplina;
